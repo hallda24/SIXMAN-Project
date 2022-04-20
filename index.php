@@ -10,6 +10,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    
+  <link rel="stylesheet" href="css\style.css">
+  
   <title>Hello</title>
 </head>
 <body>
@@ -39,12 +42,12 @@
       <table class="table table-bordered">
         <thead class="table-dark">
           <tr>
-            <td>StudentID</td>
-            <td>Name</td>
-            <td>LastName</td>
-            <td>District</td>
-            <td>Province</td>
-            <td>Region</td>
+            <td scope="col">StudentID</td>
+            <td scope="col">FristName</td>
+            <td scope="col">LastName</td>
+            <td scope="col">District</td>
+            <td scope="col">Province</td>
+            <td scope="col">Region</td>
           </tr>
         </thead>
       <tbody>
@@ -52,12 +55,12 @@
       while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
       ?>
         <tr>
-          <td><?php echo $row['StudentID']; ?></td>
-          <td><?php echo $row['FirstName']; ?></td>
-          <td><?php echo $row['LastName']; ?></td>
-          <td><?php echo $row['District']; ?></td>
-          <td><?php echo $row['Province']; ?></td>
-          <td><?php echo $row['Region']; ?></td>
+          <th scope="row" class="text-end"><?php echo $row['StudentID']; ?></th>
+          <td class="text-center fs-5"><?php echo $row['FristName']; ?></td>
+          <td class="text-center fs-5"><?php echo $row['LastName']; ?></td>
+          <td class="text-center fs-5"><?php echo $row['District']; ?></td>
+          <td class="text-center fs-5"><?php echo $row['Province']; ?></td>
+          <td class="text-center fs-5"><?php echo $row['Region']; ?></td>
         </tr>
     <?php
     }
