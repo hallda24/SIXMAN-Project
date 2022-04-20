@@ -16,7 +16,7 @@
   <?php
     $serverName = "myosproject.database.windows.net"; // update me
     $connectionOptions = array(
-        "Database" => "mySampleDatabase", // update me
+        "Database" => "myosproject", // update me
         "Uid" => "osproject", // update me
         "PWD" => "Project.123" // update me
     );
@@ -24,10 +24,10 @@
     $conn = sqlsrv_connect($serverName, $connectionOptions);
 
     /* $insert_test= "INSERT INTO [dbo].[Persons] (PersonID, FirstName, LastName, Address, City) 
-    VALUES ('99999', 'หรรม', 'ใหม่มากๆ', '123/50 กทม', 'กรุงเทพมหานคร')";
+    VALUES ('1', 'น้ำ', 'ฝน', '5', 'เชียงใหม่')";
     $getinsert = sqlsrv_query($conn, $insert_test); */
 
-    $tsql= "SELECT * FROM [dbo].[Persons]";
+    $tsql= "SELECT TOP (3) * FROM [dbo].[Persons] WHERE PersonID = '1'";
     $getResults= sqlsrv_query($conn, $tsql);
 
     if ($getResults == FALSE) {
@@ -47,9 +47,9 @@
         </tr>
       </thead>
       <tbody>
-    <?php
-    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    ?>
+      <?php
+      while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+      ?>
         <tr>
           <td><?php echo $row['PersonID']; ?></td>
           <td><?php echo $row['FirstName']; ?></td>
