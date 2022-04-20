@@ -14,11 +14,11 @@
 </head>
 <body>
   <?php
-    $serverName = "myosproject.database.windows.net"; // update me
+    $serverName = "myosproject.database.windows.net"; 
     $connectionOptions = array(
-        "Database" => "myosproject", // update me
-        "Uid" => "osproject", // update me
-        "PWD" => "Project.123" // update me
+        "Database" => "myosproject", 
+        "Uid" => "osproject",
+        "PWD" => "Project.123"
     );
     //Establishes the connection
     $conn = sqlsrv_connect($serverName, $connectionOptions);
@@ -27,7 +27,7 @@
     VALUES ('1', 'น้ำ', 'ฝน', '5', 'เชียงใหม่')";
     $getinsert = sqlsrv_query($conn, $insert_test); */
 
-    $tsql= "SELECT TOP (3) * FROM [dbo].[Persons] WHERE PersonID = '1'";
+    $tsql= "SELECT * FROM [dbo].[Student]";
     $getResults= sqlsrv_query($conn, $tsql);
 
     if ($getResults == FALSE) {
@@ -35,27 +35,29 @@
     }
     ?>
 
-    <div class="container">
+    <div class="container mt-5">
       <table class="table table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <td>PersonID</td>
-          <td>FirstName</td>
-          <td>LastName</td>
-          <td>Address</td>
-          <td>City</td>
-        </tr>
-      </thead>
+        <thead class="table-dark">
+          <tr>
+            <td>StudentID</td>
+            <td>Name</td>
+            <td>LastName</td>
+            <td>District</td>
+            <td>Province</td>
+            <td>Region</td>
+          </tr>
+        </thead>
       <tbody>
       <?php
       while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
       ?>
         <tr>
-          <td><?php echo $row['PersonID']; ?></td>
+          <td><?php echo $row['StudentID']; ?></td>
           <td><?php echo $row['FirstName']; ?></td>
           <td><?php echo $row['LastName']; ?></td>
-          <td><?php echo $row['Address']; ?></td>
-          <td><?php echo $row['City']; ?></td>
+          <td><?php echo $row['District']; ?></td>
+          <td><?php echo $row['Province']; ?></td>
+          <td><?php echo $row['Region']; ?></td>
         </tr>
     <?php
     }
