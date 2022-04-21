@@ -52,12 +52,12 @@
                 <table class="table table-striped table-hover table-primary">
                     <thead class="table-dark">
                         <tr>
-                            <td scope="col" class="text-center">StudentID</td>
-                            <td scope="col" class="text-center">FristName</td>
-                            <td scope="col" class="text-center">LastName</td>
-                            <td scope="col" class="text-center">District</td>
-                            <td scope="col" class="text-center">Province</td>
-                            <td scope="col" class="text-center">Region</td>
+                            <td scope="col" class="text-center">รหัสนักศึกษา</td>
+                            <td scope="col" class="text-center">ชื่อ</td>
+                            <td scope="col" class="text-center">นามสกุล</td>
+                            <td scope="col" class="text-center">ตำบล</td>
+                            <td scope="col" class="text-center">จังหวัด</td>
+                            <td scope="col" class="text-center">ภาค</td>
                         </tr>
                     </thead>
                     <tbody>
