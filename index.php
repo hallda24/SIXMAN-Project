@@ -10,64 +10,46 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    
-  <link rel="stylesheet" href="css\style.css">
-  
-  <title>Hello</title>
+  <link rel="stylesheet" href="css/style.css">
+  <title>SIXMAN</title>
 </head>
 <body>
-  <?php
-    $serverName = "myosproject.database.windows.net"; 
-    $connectionOptions = array(
-        "Database" => "myosproject", 
-        "Uid" => "osproject",
-        "PWD" => "Project.123"
-    );
-    //Establishes the connection
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
-
-    /* $insert_test= "INSERT INTO [dbo].[Persons] (PersonID, FirstName, LastName, Address, City) 
-    VALUES ('1', 'น้ำ', 'ฝน', '5', 'เชียงใหม่')";
-    $getinsert = sqlsrv_query($conn, $insert_test); */
-
-    $tsql= "SELECT * FROM [dbo].[Student]";
-    $getResults= sqlsrv_query($conn, $tsql);
-
-    if ($getResults == FALSE) {
-        echo (sqlsrv_errors());
-    }
-    ?>
-
     <div class="container mt-5">
-      <table class="table table-bordered">
-        <thead class="table-dark">
-          <tr>
-            <td scope="col">StudentID</td>
-            <td scope="col">FristName</td>
-            <td scope="col">LastName</td>
-            <td scope="col">District</td>
-            <td scope="col">Province</td>
-            <td scope="col">Region</td>
-          </tr>
-        </thead>
-      <tbody>
-      <?php
-      while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-      ?>
-        <tr>
-          <th scope="row" class="text-end"><?php echo $row['StudentID']; ?></th>
-          <td class="text-center fs-5"><?php echo $row['FristName']; ?></td>
-          <td class="text-center fs-5"><?php echo $row['LastName']; ?></td>
-          <td class="text-center fs-5"><?php echo $row['District']; ?></td>
-          <td class="text-center fs-5"><?php echo $row['Province']; ?></td>
-          <td class="text-center fs-5"><?php echo $row['Region']; ?></td>
-        </tr>
-    <?php
-    }
-    sqlsrv_free_stmt($getResults);
-    ?>
-      </tbody>
-    </table>
+      <form action="phpSearch.php" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control form-control-lg" placeholder="Search Here" name="search">
+          <button type="submit" class="input-group-text btn-success"><i class="bi bi-search me-2"></i> Search</button>
+        </div>
+      </form>
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="css/bg_img.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="css/bg_img.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="css/bg_img.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
