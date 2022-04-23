@@ -10,25 +10,18 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://kit.fontawesome.com/2cd128de6a.js" crossorigin="anonymous"></script>
     <title>Display with Search</title>
 </head>
 <body>
     <?php
 
+    require_once "dbConnect.php";
+
     $search = $_POST['search'];
 
-    $serverName = "myosproject.database.windows.net"; 
-    $connectionOptions = array(
-        "Database" => "myosproject", 
-        "Uid" => "osproject",
-        "PWD" => "Project.123"
-    );
-
-    //Establishes the connection
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
-
-    $tsql= "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$search%'";
+    $tsql= "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$search%' OR LastName LIKE '%$search%'";
     $getResults= sqlsrv_query($conn, $tsql);
 
     if ($getResults == FALSE) {
@@ -40,7 +33,7 @@
         <form action="" method="post">
             <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" placeholder="Search Here" name="search">
-                <button type="submit" class="input-group-text btn-success"><i class="bi bi-search me-2"></i> Search</button>
+                <button type="submit" class="input-group-text btn-primary"><i class="fa-solid fa-magnifying-glass me-2"></i></i> Search</button>
             </div>
         </form>
 
@@ -58,21 +51,25 @@
                             <td scope="col" class="text-center">ตำบล</td>
                             <td scope="col" class="text-center">จังหวัด</td>
                             <td scope="col" class="text-center">ภาค</td>
+                            <td scope="col" class="text-center"> เเก้ไข </td>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        $count_id = 1;
                         while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
                         ?>
                             <tr>
-                            <th scope="row" class="text-end"><?php echo $row['StudentID']; ?></th>
-                            <td class="text-center fs-6"><?php echo $row['FristName']; ?></td>
-                            <td class="text-center fs-6"><?php echo $row['LastName']; ?></td>
-                            <td class="text-center fs-6"><?php echo $row['District']; ?></td>
-                            <td class="text-center fs-6"><?php echo $row['Province']; ?></td>
-                            <td class="text-center fs-6"><?php echo $row['Region']; ?></td>
+                                <th scope="row" class="text-end"><?php echo $row['StudentID']; ?></th>
+                                <td class="text-center fs-6"><?php echo $row['FristName']; ?></td>
+                                <td class="text-center fs-6"><?php echo $row['LastName']; ?></td>
+                                <td class="text-center fs-6"><?php echo $row['District']; ?></td>
+                                <td class="text-center fs-6"><?php echo $row['Province']; ?></td>
+                                <td class="text-center fs-6"><?php echo $row['Region']; ?></td>
+                                <td class="text-center fs-6" id="<?php echo $count_id;?>"></td>
                             </tr>
                         <?php
+                            $count_id += 1;
                         }
                         sqlsrv_free_stmt($getResults);
                         ?>
@@ -81,5 +78,7 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script></script>
 </body>
 </html>
