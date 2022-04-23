@@ -44,6 +44,8 @@ $(document).ready(function () {
 
           $("#search-form").text(`ค้นหาด้วย " ` + response.search + ` "`);
 
+          $("tr").remove();
+
           $.each(response.data, function (i, item) {
             let $trHTML = $("#table-show").append(
               `<tr><th scope="row" class="text-end">` +
