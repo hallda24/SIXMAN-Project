@@ -19,8 +19,17 @@
 
         $search = $_POST['search'];
 
-        $tsql= "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$search%' OR LastName LIKE '%$search%'";
-        $getResults= sqlsrv_query($conn, $tsql);
+        /* $arrayString = explode(" ", $search); */
+        $arrayString = preg_split('/\s+/', $search);
+
+        if (count($arrayString) == 1) {
+            $sql = "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$search%'";
+        } else if (count($arrayString) == 2) {
+            $sql = "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$arrayString[0]%' AND LastName LIKE '%$arrayString[1]%'";
+        }
+
+        /* $sql= "SELECT * FROM [dbo].[Student] WHERE FristName LIKE '%$arrayString[0]%' OR LastName LIKE '%$arrayString[0]%'"; */
+        $getResults= sqlsrv_query($conn, $sql);
 
         if ($getResults == FALSE) {
             $form_data['errors'] = sqlsrv_errors();

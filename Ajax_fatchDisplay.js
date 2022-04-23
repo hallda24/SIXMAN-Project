@@ -13,7 +13,7 @@ $(document).ready(function () {
     $.ajax({
       //Process the form using $.ajax()
       type: "POST", //Method type
-      url: "edit.php", //Your form processing file URL
+      url: "fatchDisplay.php", //Your form processing file URL
       data: postForm, //Forms name
       dataType: "json",
       encode: true,
@@ -44,11 +44,14 @@ $(document).ready(function () {
 
           $("#search-form").text(`ค้นหาด้วย " ` + response.search + ` "`);
 
-          $("tr").remove();
+          $(".row-fatch").remove();
 
           $.each(response.data, function (i, item) {
             let $trHTML = $("#table-show").append(
-              `<tr><th scope="row" class="text-end">` +
+              `<tr id="` +
+                item.StudentID +
+                `" class="row-fatch"
+               ><th scope="row" class="text-end">` +
                 item.StudentID +
                 `</th><td class="text-center fs-6">` +
                 item.FristName +
