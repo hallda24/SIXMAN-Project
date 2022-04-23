@@ -48,7 +48,27 @@
         </div>
       </form>
 
-      <div id="table-show"></div>
+      <div class="card d-none" id="head-table-show">
+        <div class="card-header">
+          <h5 id="search-form"></h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-hover table-primary">
+            <thead class="table-dark">
+              <tr>
+                <td scope="col" class="text-center">รหัสนักศึกษา</td>
+                <td scope="col" class="text-center">ชื่อ</td>
+                <td scope="col" class="text-center">นามสกุล</td>
+                <td scope="col" class="text-center">ตำบล</td>
+                <td scope="col" class="text-center">จังหวัด</td>
+                <td scope="col" class="text-center">ภาค</td>
+                <td scope="col" class="text-center">เเก้ไข</td>
+              </tr>
+            </thead>
+            <tbody id="table-show"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </body>
 </html>

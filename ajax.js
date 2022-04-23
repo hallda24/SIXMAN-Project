@@ -22,23 +22,44 @@ $(document).ready(function () {
           //If fails
           Swal.fire({
             icon: "error",
-            title: "Oops...",
-            text: response.errors,
-            footer: '<a href="">Why do I have this issue?</a>',
+            title: "failed",
+            text: response.errors.search,
           });
-          if (response.errors.name) {
+          if (response.errors) {
             //Returned if any error from process.php
-            $(".throw_error").fadeIn(1000).html(response.errors.name); //Throw relevant error
+            Swal.fire({
+              icon: "error",
+              title: "Returned if any error from edit.php",
+              text: response.errors,
+            });
           }
         } else {
           //If successful
-          console.log(response.data);
+          console.log(response);
           //If successful, than throw a success message
+
+          if ($("#head-table-show").hasClass("d-none")) {
+            $("#head-table-show").removeClass("d-none");
+          }
+
+          $("#search-form").text(`ค้นหาด้วย " ` + response.search + ` "`);
+
           $.each(response.data, function (i, item) {
-            console.log(item);
-            var $tr = $("#table-show").append(
-              "<tr><td>" + item.StudentID + "</td></td>"
-            ); //.appendTo('#records_table');
+            let $trHTML = $("#table-show").append(
+              `<tr><th scope="row" class="text-end">` +
+                item.StudentID +
+                `</th><td class="text-center fs-6">` +
+                item.FristName +
+                `</td><td class="text-center fs-6">` +
+                item.LastName +
+                `</td><td class="text-center fs-6">` +
+                item.District +
+                `</td><td class="text-center fs-6">` +
+                item.Province +
+                `</td><td class="text-center fs-6">` +
+                item.Region +
+                `</td><td class="text-center fs-6"><button class="btn btn-primary">edit</button></td></tr>`
+            );
           });
         }
       },
