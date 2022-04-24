@@ -27,28 +27,56 @@
     ></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="Ajax_fatchDisplay.js"></script>
-    <title>SIXMAN</title>
+    <script src="Ajax_edit.js"></script>
+    <link rel="icon" type="image/x-icon" href="/images/kindpng_3708691.png" />
+    <title>Finder KMITL</title>
   </head>
   <body>
-    <div class="container mt-5 needs-validation" novalidate>
-      <form action="phpSearch.php" method="post">
-        <label for="search" class="form-label">Search</label>
-        <div class="input-group has-validation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <img
+          src="images/kindpng_3708691.png"
+          alt=""
+          width="35"
+          height="29"
+          class="d-inline-block align-text-top mx-2"
+        />
+        <a class="navbar-brand fs-3" href="index.html">Finder KMITL</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link fs-4" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4" href="#">Features</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center align-items-center">
+        <h1 class="fs-2 fw-bold">ไครกันที่คุณ คิดถึง</h1>
+      </div>
+      <form method="post" class="w-50 mx-auto mt-5" id="form-search">
+        <div>
+          <label for="search" class="form-label p-10">ค้นหา</label>
           <input
             type="text"
-            class="form-control form-control-lg"
-            placeholder="Search Here"
+            class="form-control"
+            placeholder="ชื่อ - นามสกุล หรือ ตัวอักษรบางตัว"
             name="search"
             id="search"
+            pattern="[ก-ฮ]{1,}"
             required
           />
-          <button type="submit" class="input-group-text btn-success">
-            <i class="bi bi-search me-2"></i> Search
-          </button>
         </div>
+        <button type="submit" class="btn btn-primary mt-3">
+          <i class="fa-solid fa-magnifying-glass me-2"></i>ค้นหา
+        </button>
       </form>
 
-      <div class="card d-none mt-2" id="head-table-show">
+      <div class="card d-none mt-3" id="head-table-show">
         <div class="card-header">
           <h5 id="search-form">test</h5>
         </div>
@@ -69,6 +97,17 @@
           </table>
         </div>
       </div>
+      <footer class="bg-light text-center text-lg-start fixed-bottom">
+        <!-- Copyright -->
+        <div
+          class="text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+          © 2022 Copyright:
+          <a class="text-dark" href="index.html">Teletubbies Land.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
     </div>
   </body>
 </html>

@@ -1,14 +1,13 @@
 $(document).ready(function () {
-  $("form").submit(function (event) {
-    //Trigger on form submit
-    $("#search").empty(); //Clear the messages first
-
-    //Validate fields if required using jQuery
+  $("#form-search").submit(function (event) {
+    event.preventDefault(); //Prevent the default submit
 
     var postForm = {
       //Fetch form data
       search: $("input[name=search]").val(), //Store name fields value
     };
+
+    $("#search").empty(); //Empty the div before fetching new data
 
     $.ajax({
       //Process the form using $.ajax()
@@ -63,12 +62,15 @@ $(document).ready(function () {
                 item.Province +
                 `</td><td class="text-center fs-6">` +
                 item.Region +
-                `</td><td class="text-center fs-6"><button class="btn btn-primary">edit</button></td></tr>`
+                `</td><td class="text-center fs-6">                
+                <button class="btn btn-primary" onclick="createEditForm(` +
+                item.StudentID +
+                `)">edit</button>
+              </td></tr>`
             );
           });
         }
       },
     });
-    event.preventDefault(); //Prevent the default submit
   });
 });

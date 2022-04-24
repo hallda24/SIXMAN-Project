@@ -19,7 +19,7 @@
 
         $search = $_POST['search'];
 
-        /* $arrayString = explode(" ", $search); */
+        
         $arrayString = preg_split('/\s+/', $search);
 
         if (count($arrayString) == 1) {

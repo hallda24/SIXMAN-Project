@@ -1,8 +1,0 @@
-@font-face {
-  font-family: "BaiJamjuree";
-  src: url(BaiJamjuree-Regular.ttf) format("truetype");
-}
-
-body {
-  font-family: BaiJamjuree;
-}
