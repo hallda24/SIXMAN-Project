@@ -7,8 +7,6 @@ $(document).ready(function () {
       search: $("input[name=search]").val(), //Store name fields value
     };
 
-    console.log(postForm);
-
     $("#search").empty(); //Empty the div before fetching new data
 
     $.ajax({
@@ -28,7 +26,6 @@ $(document).ready(function () {
           });
         } else {
           //If successful, than throw a success message
-          console.log(response);
 
           let countRegion = [0, 0, 0, 0, 0, 0, 0];
           let countAllregion = 0;

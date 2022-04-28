@@ -66,8 +66,6 @@ function Update(id) {
     Region: $("input[name=Region" + id + "]").val(),
   };
 
-  console.log(updateData);
-
   $.ajax({
     //Process the form using $.ajax()
     type: "POST", //Method type
@@ -76,6 +74,7 @@ function Update(id) {
     dataType: "json",
     encode: true,
     success: function (response) {
+      cancel(id);
       if (!response.status) {
         //If fails
         Swal.fire({
