@@ -7,6 +7,8 @@ $(document).ready(function () {
       search: $("input[name=search]").val(), //Store name fields value
     };
 
+    console.log(postForm);
+
     $("#search").empty(); //Empty the div before fetching new data
 
     $.ajax({
@@ -22,20 +24,38 @@ $(document).ready(function () {
           Swal.fire({
             icon: "error",
             title: "failed",
-            text: response.errors.search,
+            text: response.errors,
           });
-          if (response.errors) {
-            //Returned if any error from process.php
-            Swal.fire({
-              icon: "error",
-              title: "Returned if any error from edit.php",
-              text: response.errors,
-            });
-          }
         } else {
-          //If successful
-          console.log(response);
           //If successful, than throw a success message
+          console.log(response);
+
+          let countRegion = [0, 0, 0, 0, 0, 0, 0];
+          let countAllregion = 0;
+
+          response.alldata.reduce((acc, cur) => {
+            if (cur.Region == "ภาคกลาง") {
+              countRegion[0]++;
+            }
+            if (cur.Region == "ภาคเหนือ") {
+              countRegion[1]++;
+            }
+            if (cur.Region == "ภาคใต้") {
+              countRegion[2]++;
+            }
+            if (cur.Region == "ภาคตะวันตก") {
+              countRegion[3]++;
+            }
+            if (cur.Region == "ภาคตะวันออก") {
+              countRegion[4]++;
+            }
+            if (cur.Region == "ภาคอีสาน") {
+              countRegion[5]++;
+            }
+            countAllregion++;
+          });
+
+          const proportion = countRegion.map((x) => (x * countAllregion) / 100);
 
           if ($("#head-table-show").hasClass("d-none")) {
             $("#head-table-show").removeClass("d-none");
@@ -62,7 +82,14 @@ $(document).ready(function () {
                 item.Province +
                 `</td><td class="text-center fs-6">` +
                 item.Region +
-                `</td><td class="text-center fs-6">                
+                `</td><td class="text-center fs-6">` +
+                (item.Region == "ภาคกลาง" ? proportion[0] : "") +
+                (item.Region == "ภาคเหนือ" ? proportion[1] : "") +
+                (item.Region == "ภาคใต้" ? proportion[2] : "") +
+                (item.Region == "ภาคตะวันตก" ? proportion[3] : "") +
+                (item.Region == "ภาคตะวันออก" ? proportion[4] : "") +
+                (item.Region == "ภาคอีสาน" ? proportion[5] : "") +
+                `% </td><td class="text-center fs-6">                
                 <button class="btn btn-primary" onclick="createEditForm(` +
                 item.StudentID +
                 `)">edit</button>

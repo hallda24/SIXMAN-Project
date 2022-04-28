@@ -7,19 +7,14 @@
 
     /* Validate the form on the server side */
     if (empty($_POST['search'])) { //Name cannot be empty
-        $errors['search'] = 'search is required';
-    }
-
-    if (!empty($errors)) { //If errors in validation
         $form_data['success'] = false;
-        $form_data['errors']  = $errors;
+        $errors['search'] = 'search is required';
     }
 
     else { //If not, process the form, and return true on success
 
-        $search = $_POST['search'];
+        $search = htmlspecialchars($_POST['search'], ENT_QUOTES, 'UTF-8') ?? NULL;
 
-        
         $arrayString = preg_split('/\s+/', $search);
 
         if (count($arrayString) == 1) {
@@ -32,11 +27,20 @@
         $getResults= sqlsrv_query($conn, $sql);
 
         if ($getResults == FALSE) {
+            $form_data['success'] = false;
             $form_data['errors'] = sqlsrv_errors();
         }
 
         while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
             $form_data['data'][] = $row;
+        }
+        
+        $Alldata = "SELECT Region FROM [dbo].[Student]";
+
+        $getAlldata = sqlsrv_query($conn, $Alldata);
+
+        while ($row = sqlsrv_fetch_array($getAlldata, SQLSRV_FETCH_ASSOC)) {
+            $form_data['alldata'][] = $row;
         }
 
         $form_data['search']  = $search;
@@ -44,6 +48,7 @@
     }
 
     //Return the data back to form.php
+    
     echo json_encode($form_data);
 
 ?>

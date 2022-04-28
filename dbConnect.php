@@ -1,12 +1,11 @@
 <?php 
 
-$serverName = "myosproject.database.windows.net"; 
+    $serverName = "osdatabaseproject.database.windows.net"; // update me
     $connectionOptions = array(
-        "Database" => "myosproject", 
-        "Uid" => "osproject",
-        "PWD" => "Project.123"
+        "Database" => "student", // update me
+        "Uid" => "osdatabaseproject", // update me
+        "PWD" => "~75\$XrCbSG{NXM6s" // update me
     );
-
     //Establishes the connection
     $conn = sqlsrv_connect($serverName, $connectionOptions);
 
