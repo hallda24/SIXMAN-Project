@@ -52,7 +52,7 @@ $(document).ready(function () {
             countAllregion++;
           });
 
-          const proportion = countRegion.map((x) => (x * countAllregion) / 100);
+          const proportion = countRegion.map((x) => (x * 100) / countAllregion);
 
           if ($("#head-table-show").hasClass("d-none")) {
             $("#head-table-show").removeClass("d-none");
